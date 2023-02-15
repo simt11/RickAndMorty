@@ -3,6 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!--Даем разрешение, на подключение к интернету    -->
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -10,8 +12,11 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.RickMorty"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+
+
         tools:targetApi="31">
+    <!--использую тему NoActionBar для скрытия встроенного Toolbar-->
         <activity
             android:exported="true"
             android:name=".MainActivity">
@@ -22,5 +27,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>
