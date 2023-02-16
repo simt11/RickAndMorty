@@ -23,5 +23,6 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         title = getString(R.string.start_title)
         replaceFragment(StartFragment(), false)
+
     }
 }
