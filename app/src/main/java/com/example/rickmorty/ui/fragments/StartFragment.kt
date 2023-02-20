@@ -34,7 +34,8 @@ class StartFragment : Fragment() {
         binding.textStart.text = "Vova"
 
     }
-
+    private val BASE_URL = "https://httpbin.org"
+    private val GET_UUID = "$BASE_URL/uuid"
     private suspend fun initClient() {
         val client = HttpClient(CIO) //создаем клиент
         //val response: HttpResponse = client.get("https://ktor.io/")
