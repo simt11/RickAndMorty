@@ -1,23 +1,22 @@
 package com.example.rickmorty.ui.fragments
 
-import android.os.Binder
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.rickmorty.R
+import androidx.fragment.app.Fragment
 import com.example.rickmorty.databinding.FragmentStartBinding
-import io.ktor.client.HttpClient
-import io.ktor.client.engine.cio.CIO
-import io.ktor.client.request.get
-import io.ktor.client.statement.HttpResponse
-import java.util.zip.Inflater
+import com.example.rickmorty.utilits.Api
+import com.example.rickmorty.utilits.Person
+import com.example.rickmorty.utilits.ToastPrint
+import kotlinx.coroutines.runBlocking
 
 class StartFragment : Fragment() {
     private lateinit var binding: FragmentStartBinding
+    private lateinit var person: Person
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
     }
 
     override fun onCreateView(
@@ -31,14 +30,16 @@ class StartFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.textStart.text = "Vova"
+        //simpleCase()
+        load()
+        binding.namePerson.text = person.name
+//        binding.imagePerson.load
 
     }
-    private val BASE_URL = "https://httpbin.org"
-    private val GET_UUID = "$BASE_URL/uuid"
-    private suspend fun initClient() {
-        val client = HttpClient(CIO) //создаем клиент
-        //val response: HttpResponse = client.get("https://ktor.io/")
-        client.close()
+
+    fun load() = runBlocking<Unit> {
+        var api = Api()
+        person = api.loadPage("https://rickandmortyapi.com/api/character/69")
+        ToastPrint(person.name)
     }
 }

@@ -3,7 +3,7 @@ package com.example.rickmorty.utilits
 import kotlinx.serialization.Serializable
 
 @Serializable
-class Person(
+data class Person(
     val id: Int,
     val name: String,
     val status: Status,
